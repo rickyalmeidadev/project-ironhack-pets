@@ -15,12 +15,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  pets: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Pet',
-    },
-  ],
   // Bonus: Image
   path: String,
   originalName: String,

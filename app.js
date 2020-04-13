@@ -12,6 +12,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const User = require('./models/User')
 
 // Mongoose connection
 mongoose
@@ -56,7 +57,7 @@ passport.deserializeUser((id, done) => {
 // Passport local strategy
 passport.use(
   new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
+    User.findOne({ email: username }, (err, user) => {
       if (err) {
         return done(err);
       }
@@ -81,8 +82,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./routes/index.routes'));
-// app.use('/auth', require('./routes/auth.routes'));
-// app.use('/user', require('./routes/user.routes'));
+app.use('/auth', require('./routes/auth.routes'));
+app.use('/user', require('./routes/user.routes'));
 // app.use('/pet', require('./routes/pet.routes'));
 // app.use('/event', require('./routes/event.routes'));
 

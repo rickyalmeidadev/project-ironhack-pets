@@ -13,6 +13,10 @@ const EventSchema = new Schema({
   },
   description: String,
   date: String, // YYYY-MM-DD
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'Pet',
+  },
   // Bonus: Location
   location: {
     type: {

@@ -12,12 +12,10 @@ const PetSchema = new Schema({
     default: 'Outro',
   },
   birthdate: String, // YYYY-MM-DD
-  events: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Event',
-    },
-  ],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   // Bonus: Image
   path: String,
   originalName: String,

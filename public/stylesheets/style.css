@@ -68,7 +68,7 @@ body {
 }
 
 .site-title h1, h2 {
-  text-shadow: 1px 1px 5px var(--secondary-color-lighter);
+  text-shadow: 1px 1px 3px var(--secondary-color-lighter);
 }
 
 .btn-main {
