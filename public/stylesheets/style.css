@@ -6,6 +6,8 @@
   --secondary-color: #1e1e1e;
   --secondary-color-lighter: #474747;
   --white-color: #e9e9e9;
+  --danger-color: #c0392b;
+  --danger-color-lighter: #e74c3c;
 }
 
 * {
@@ -86,6 +88,20 @@ body {
   text-decoration: none;
 }
 
+.btn-delete {
+  background-color: var(--danger-color);
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: var(--danger-color-lighter);
+  color: white;
+  text-decoration: none;
+}
+
 .site-main {
   background-color: var(--white-color);
 }
@@ -103,4 +119,28 @@ body {
 .site-info > p {
   font-size: 1.1rem;
   color: var(--secondary-color);
+}
+
+hr {
+  margin: 50px 0;
+}
+
+.img-crop {
+  margin: 0 auto;
+  position: relative;
+}
+
+.card > i {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+img {
+  object-fit: contain;
+  height: 250px !important;
+}
+
+i {
+  cursor: pointer;
 }

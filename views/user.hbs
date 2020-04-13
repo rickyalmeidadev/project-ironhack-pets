@@ -3,33 +3,98 @@
   <h3 class="my-3">Próximos eventos:</h3>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4 p-1">
       <div class="card" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">Vacina pra Raiva</h5>
           <h6 class="card-subtitle my-2 text-muted">Tipo: Vacina</h6>
           <h6 class="card-subtitle my-2 text-muted">Data: DD/MM/YYYY</h6>
+          <h6 class="card-subtitle my-2 text-muted">Pet: Nome do Pet</h6>
           <a href="" class="btn btn-main mt-1">Ver mais</a>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4 p-1">
       <div class="card" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">Vacina pra Raiva</h5>
           <h6 class="card-subtitle my-2 text-muted">Tipo: Vacina</h6>
           <h6 class="card-subtitle my-2 text-muted">Data: DD/MM/YYYY</h6>
+          <h6 class="card-subtitle my-2 text-muted">Pet: Nome do Pet</h6>
           <a href="" class="btn btn-main mt-1">Ver mais</a>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4 p-1">
       <div class="card" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">Vacina pra Raiva</h5>
           <h6 class="card-subtitle my-2 text-muted">Tipo: Vacina</h6>
           <h6 class="card-subtitle my-2 text-muted">Data: DD/MM/YYYY</h6>
+          <h6 class="card-subtitle my-2 text-muted">Pet: Nome do Pet</h6>
           <a href="" class="btn btn-main mt-1">Ver mais</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <div class="row justify-content-between align-itemns-center">
+      <h3 class="my-3">Meus Pets:</h3>
+      <div class="d-flex justify-content-center- align-items-center">
+        <button class="btn btn-main" data-toggle="modal" data-target="#modalAdicionarPet">Adicionar Pet</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-sm-6 col-lg-3 p-1">
+      <div class="card" style="width: 100%;">
+        <img
+          src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Nome do Pet</h5>
+          <h6 class="card-subtitle my-2 text-center text-muted">Total de eventos: X</h6>
+          <a href="" class="btn btn-block btn-main mt-1">Ver detalhes</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3 p-1">
+      <div class="card" style="width: 100%;">
+        <img
+          src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Nome do Pet</h5>
+          <h6 class="card-subtitle my-2 text-center text-muted">Total de eventos: X</h6>
+          <a href="" class="btn btn-block btn-main mt-1">Ver detalhes</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3 p-1">
+      <div class="card" style="width: 100%;">
+        <img
+          src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Nome do Pet</h5>
+          <h6 class="card-subtitle my-2 text-center text-muted">Total de eventos: X</h6>
+          <a href="" class="btn btn-block btn-main mt-1">Ver detalhes</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3 p-1">
+      <div class="card" style="width: 100%;">
+        <img
+          src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Nome do Pet</h5>
+          <h6 class="card-subtitle my-2 text-center text-muted">Total de eventos: X</h6>
+          <a href="" class="btn btn-block btn-main mt-1">Ver detalhes</a>
         </div>
       </div>
     </div>
@@ -44,29 +109,47 @@
 
   {{!-- Modal --}}
 
-  <div class="modal fade" id="modalEntrar" tabindex="-1" role="dialog" aria-labelledby="modalEntrarTitle"
+  <div class="modal fade" id="modalAdicionarPet" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarPetTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalEntrarTitle">Adicionar Pet</h5>
+          <h5 class="modal-title" id="modalAdicionarPetTitle">Adicionar Pet</h5>
         </div>
         <div class="modal-body">
-          <form action="/pet/add" method="POST">
+          <form action="/pet/add" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="exampleInputEmail1">Nome</label>
-              <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                required>
+              <label for="inputEmail1">Nome</label>
+              <input type="text" placeholder="Seu Pet" name="name" class="form-control" id="inputEmail1"
+                aria-describedby="emailHelp" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Espécie</label>
-              <input type="select" name="password" class="form-control" id="exampleInputPassword1" required>
+              <label for="inputPassword1">Espécie</label>
+              <select class="custom-select" name="species" id="species" required>
+                <option value="Cachorro">Cachorro</option>
+                <option value="Gato">Gato</option>
+                <option value="Calopsita">Calopsita</option>
+                <option value="Coelho">Coelho</option>
+                <option value="Tartaruga">Tartaruga</option>
+                <option value="Outro">Outro</option>
+              </select>
             </div>
-            <button type="submit" class="btn-main">Entrar</button>
+            <div class="form-group">
+              <label for="inputBirthdate">Data de Nascimento</label>
+              <input type="date" name="birthdate" class="form-control" id="inputBirthdate"
+                aria-describedby="birthdateHelp" required>
+            </div>
+            <div class="form-group">
+              <label for="inputPhoto">Foto</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFileLangHTML">
+                <label class="custom-file-label" for="inputPhoto" data-browse="Procurar">Insira uma foto</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-main btn-block">Adicionar Pet</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-
 </div>
