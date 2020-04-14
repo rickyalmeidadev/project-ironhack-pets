@@ -86,18 +86,19 @@
         <h5 class="modal-title" id="modalEditarPetTitle">Editar Pet</h5>
       </div>
       <div class="modal-body">
-        <form action="/pet/edit/:id" method="POST">
+        <form action="/pet/edit/{{pet._id}}" method="POST">
           <div class="form-group">
             <label for="inputEmail1">Nome</label>
             <input type="text" placeholder="Seu Pet" name="name" class="form-control" id="inputEmail1"
-              aria-describedby="emailHelp" required>
+              aria-describedby="emailHelp" value="{{pet.name}}" required>
           </div>
           <div class="form-group">
             <label for="inputPassword1">Espécie</label>
             <select class="custom-select" name="species" id="species" required>
+              <option value="" disabled selected>Espécie</option>
               <option value="Cachorro">Cachorro</option>
               <option value="Gato">Gato</option>
-              <option value="Calopsita">Calopsita</option>
+              <option value="Ave">Ave</option>
               <option value="Coelho">Coelho</option>
               <option value="Tartaruga">Tartaruga</option>
               <option value="Outro">Outro</option>
@@ -106,10 +107,10 @@
           <div class="form-group">
             <label for="inputBirthdate">Data de Nascimento</label>
             <input type="date" name="birthdate" class="form-control" id="inputBirthdate"
-              aria-describedby="birthdateHelp" required>
+              aria-describedby="birthdateHelp" value="{{pet.birthdate}}" required>
           </div>
           <button type="submit" class="btn btn-main btn-block">Salvar</button>
-          <button type="submit" class="btn btn-delete btn-block">Excluir</button>
+          <a class="btn btn-delete btn-block" href="/pet/delete/{{pet._id}}" >Excluir</a>
         </form>
       </div>
     </div>
