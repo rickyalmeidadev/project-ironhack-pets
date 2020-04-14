@@ -3,8 +3,8 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   if (req.user) {
-    const isLogged = req.user;
-    res.render('index', { isLogged });
+    const obj = { user: req.user }
+    res.render('index', { obj });
     return;
   }
   res.render('index');

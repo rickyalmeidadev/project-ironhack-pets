@@ -144,3 +144,13 @@ img {
 i {
   cursor: pointer;
 }
+
+footer {
+  background-color: var(--secondary-color);
+  border-top: 4px solid var(--main-color);
+}
+
+footer p {
+  font-weight: 600;
+  margin: 0
+}
