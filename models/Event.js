@@ -8,7 +8,7 @@ const EventSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['Vacina', 'Consulta', 'Cirurgia', 'Banho/Tosa', 'Aniversário', 'Outros'],
+    enum: ['Vacina', 'Consulta', 'Cirurgia', 'Banho/Tosa', 'Aniversario', 'Outros'],
     default: 'Outros',
   },
   description: String,
