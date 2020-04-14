@@ -1,6 +1,9 @@
 <div class="container mt-3 pt-5">
+  {{!--  Welcome Section --}}
   <h1 class="my-5">Bem vindo, {{obj.user.name}}</h1>
   <h3 class="my-3">Próximos eventos:</h3>
+
+  {{!-- Next Events --}}
   <div class="row">
     <div class="col-md-4 p-1">
       <div class="card" style="width: 100%;">
@@ -39,6 +42,7 @@
 
   <hr>
 
+  {{!-- Pets --}}
   <div class="container">
     <div class="row justify-content-between align-itemns-center">
       <h3 class="my-3">Meus Pets:</h3>
@@ -72,7 +76,7 @@
 
 
 
-  {{!-- Modal --}}
+  {{!-- Modal Add Pet --}}
 
   <div class="modal fade" id="modalAdicionarPet" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarPetTitle"
     aria-hidden="true">
@@ -117,5 +121,3 @@
     </div>
   </div>
 </div>
-
-{{!-- {{/with}} --}}
