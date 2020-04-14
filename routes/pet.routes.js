@@ -1,30 +1,41 @@
 const express = require('express');
 const router = express.Router();
-
+const Event = require('../models/Event')
 const Pet = require('../models/Pet');
 
 router.get('/:id', (req, res, next) => {
   const user = req.user;
   const { id } = req.params;
+  
 
   Pet.findById(id)
   .populate('owner')
   .then(pet => {
-    const obj = {
-      pet,
-      user
-    }
 
-    res.render('pet', obj)
+    Event.find({owner:id})
+    .sort({date:-1})
+    .then(events => {
+      const obj = {
+        pet,
+        user,
+        events
+      }
+      res.render('pet', {obj})
+    })
+    .catch(() => {
+      const obj = {
+        pet,
+        user
+      }
+      res.render('pet', {obj})
+    })
   })
   .catch(error => console.log('Falha ao acessar página do pet: ', error));
 });
-
+// pet add
 router.post('/add', (req, res, next) => {
   const { name, species, birthdate } = req.body;
   const id = req.user._id;
-
-
   Pet.create({
     name,
     species,
@@ -59,5 +70,12 @@ router.get('/delete/:id', (req, res, next) => {
   .catch(error => console.log('Falha ao deletar pet ', error));
 
 })
+
+// event add
+
+
+
+
+
 
 module.exports = router;
