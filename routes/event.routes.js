@@ -30,7 +30,15 @@ router.post('/edit/:id', (req, res, next) => {
 })
 
 // event delete
-
+router.get('/delete/:id', (req, res, next) => {
+    const id = req.params.id;
+    Event.findByIdAndDelete(id)
+    .then(event => {
+    console.log(`${event} deletado!!!`);
+    res.redirect('/pet/'+ event.owner)
+    })
+    .catch(error => console.log('Falha ao deletar evento ', error));
+})
 
 
 module.exports = router;

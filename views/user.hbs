@@ -4,8 +4,22 @@
   <h3 class="my-3">Próximos eventos:</h3>
 
   {{!-- Next Events --}}
+  
   <div class="row">
+    {{#each obj.events}}
     <div class="col-md-4 p-1">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <h6 class="card-subtitle my-2 text-muted">Tipo: {{type}}</h6>
+          <h6 class="card-subtitle my-2 text-muted">Data: {{date}}</h6>
+          <h6 class="card-subtitle my-2 text-muted">Pet: {{owner.name}}</h6>
+          <a href="" class="btn btn-main mt-1">Ver mais</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    {{!-- <div class="col-md-4 p-1">
       <div class="card" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">Vacina pra Raiva</h5>
@@ -27,18 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 p-1">
-      <div class="card" style="width: 100%;">
-        <div class="card-body">
-          <h5 class="card-title">Vacina pra Raiva</h5>
-          <h6 class="card-subtitle my-2 text-muted">Tipo: Vacina</h6>
-          <h6 class="card-subtitle my-2 text-muted">Data: DD/MM/YYYY</h6>
-          <h6 class="card-subtitle my-2 text-muted">Pet: Nome do Pet</h6>
-          <a href="" class="btn btn-main mt-1">Ver mais</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  </div> --}}
 
   <hr>
 
