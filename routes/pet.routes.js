@@ -8,7 +8,7 @@ router.get('/:id', (req, res, next) => {
   const { id } = req.params;
 
   Pet.findById(id)
-  .populate('User')
+  .populate('owner')
   .then(pet => {
     const obj = {
       pet,
@@ -37,5 +37,27 @@ router.post('/add', (req, res, next) => {
   })
   .catch(error => console.log('Falha ao criar pet: ', error));
 });
+// pet update
+router.post('/edit/:id', (req, res, next) => {
+  const {name, species, birthdate} = req.body;
+  const id = req.params.id;
+  Pet.findByIdAndUpdate(id, {name, species, birthdate},{new:true})
+  .then(pet => {
+    console.log(`${pet} atualizado!!!`);
+    res.redirect('/pet/'+ id)
+  })
+  .catch(error => console.log('Falha ao atualizar pet: ', error));
+})
+// pet delete
+router.get('/delete/:id', (req, res, next) => {
+  const id = req.params.id;
+  Pet.findByIdAndDelete(id)
+  .then(pet => {
+    console.log(`${pet} deletado!!!`);
+    res.redirect('/user')
+  })
+  .catch(error => console.log('Falha ao deletar pet ', error));
+
+})
 
 module.exports = router;

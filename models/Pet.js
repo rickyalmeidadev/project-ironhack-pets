@@ -8,7 +8,7 @@ const PetSchema = new Schema({
   },
   species: {
     type: String,
-    enum: ['Cachorro', 'Gato', 'Calopsita', 'Coelho', 'Tartaruga', 'Outro'],
+    enum: ['Cachorro', 'Gato', 'Ave', 'Coelho', 'Tartaruga', 'Outro'],
     default: 'Outro',
   },
   birthdate: String, // YYYY-MM-DD
