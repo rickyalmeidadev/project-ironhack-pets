@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Event = require('../models/Event')
+const Event = require('../models/Event');
 const Pet = require('../models/Pet');
+const ensureLogin = require("connect-ensure-login");
+const uploadCloud = require('../config/cloudinary.js')
 
-router.get('/:id', (req, res, next) => {
+// pet details
+router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const user = req.user;
   const { id } = req.params;
   
@@ -13,7 +16,7 @@ router.get('/:id', (req, res, next) => {
   .then(pet => {
 
     Event.find({owner:id})
-    .sort({date:-1})
+    .sort({date: 1})
     .then(events => {
       const obj = {
         pet,
@@ -32,35 +35,72 @@ router.get('/:id', (req, res, next) => {
   })
   .catch(error => console.log('Falha ao acessar página do pet: ', error));
 });
+
 // pet add
-router.post('/add', (req, res, next) => {
+router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const { name, species, birthdate } = req.body;
   const id = req.user._id;
-  Pet.create({
-    name,
-    species,
-    birthdate,
-    owner: id
-  })
-  .then(pet => {
-    console.log('Pet criado com sucesso', pet);
-    res.redirect('/user');
-  })
-  .catch(error => console.log('Falha ao criar pet: ', error));
+  if (req.file) {
+    Pet.create({
+      name,
+      species,
+      birthdate,
+      owner: id,
+      path: req.file.url,
+      originalName: req.file.originalname
+    })
+    .then(pet => {
+      console.log('Pet criado com sucesso', pet);
+      res.redirect('/user');
+    })
+    .catch(error => console.log('Falha ao criar pet: ', error));
+  } else {
+    Pet.create({
+      name,
+      species,
+      birthdate,
+      owner: id,
+    })
+    .then(pet => {
+      console.log('Pet criado com sucesso', pet);
+      res.redirect('/user');
+    })
+    .catch(error => console.log('Falha ao criar pet: ', error));
+  }
 });
+
 // pet update
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const {name, species, birthdate} = req.body;
   const id = req.params.id;
-  Pet.findByIdAndUpdate(id, {name, species, birthdate},{new:true})
-  .then(pet => {
+  if (req.file) {
+    Pet.findByIdAndUpdate(id, {
+      name, 
+      species, 
+      birthdate,
+      path: req.file.url,
+      originalName: req.file.originalname
+    },
+    { 
+      new: true 
+    })
+    .then(pet => {
     console.log(`${pet} atualizado!!!`);
     res.redirect('/pet/'+ id)
-  })
-  .catch(error => console.log('Falha ao atualizar pet: ', error));
+    })
+    .catch(error => console.log('Falha ao atualizar pet 1: ', error));
+  } else {
+    Pet.findByIdAndUpdate(id, {name, species, birthdate},{new:true})
+    .then(pet => {
+      console.log(`${pet} atualizado!!!`);
+      res.redirect('/pet/'+ id)
+    })
+    .catch(error => console.log('Falha ao atualizar pet 2: ', error));
+  }
 })
+
 // pet delete
-router.get('/delete/:id', (req, res, next) => {
+router.get('/delete/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
   Pet.findByIdAndDelete(id)
   .then(pet => {
@@ -68,14 +108,6 @@ router.get('/delete/:id', (req, res, next) => {
     res.redirect('/user')
   })
   .catch(error => console.log('Falha ao deletar pet ', error));
-
 })
-
-// event add
-
-
-
-
-
 
 module.exports = router;

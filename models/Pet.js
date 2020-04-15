@@ -17,7 +17,10 @@ const PetSchema = new Schema({
     ref: 'User',
   },
   // Bonus: Image
-  path: String,
+  path: {
+    type: String,
+    default: '/images/default-pet-img.svg'
+  },
   originalName: String,
 });
 
