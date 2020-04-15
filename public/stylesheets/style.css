@@ -154,3 +154,35 @@ footer p {
   font-weight: 600;
   margin: 0
 }
+
+#info-1, #info-3 {
+  opacity: 0;
+  animation: from-right 1s ease-in-out forwards;
+}
+
+#info-2 {
+  opacity: 0;
+  animation: from-left 1s ease-in-out forwards;
+}
+
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
