@@ -14,7 +14,6 @@ router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Pet.findById(id)
   .populate('owner')
   .then(pet => {
-
     Event.find({owner:id})
     .sort({date: 1})
     .then(events => {
@@ -33,7 +32,10 @@ router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
       res.render('pet', {obj})
     })
   })
-  .catch(error => console.log('Falha ao acessar página do pet: ', error));
+  .catch(error => {
+    console.log('Falha ao acessar página do pet: ', error)
+    res.redirect('/user')
+  });
 });
 
 // pet add

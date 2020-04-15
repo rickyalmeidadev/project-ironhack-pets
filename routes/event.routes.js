@@ -13,7 +13,10 @@ router.post('/add/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
         console.log(`${event} criado com sucesso!!!`)
         res.redirect('/pet/'+ id) // id do pet
     })
-    .catch(error => console.log("Falha ao criar o evento ", error))
+    .catch(error => {
+        console.log("Falha ao criar o evento ", error)
+        res.redirect('/pet/'+ id)
+    })
 })
 
 // event edit
@@ -26,7 +29,10 @@ router.post('/edit/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
         console.log(`${event} editado com sucesso!!!`)
         res.redirect('/pet/'+ event.owner)
     })
-    .catch(error => console.log('Falha ao editar o event', error));
+    .catch(error => {
+        console.log('Falha ao editar o event', error)
+        res.redirect('/pet/'+ id)
+    });
 })
 
 // event delete
@@ -38,7 +44,10 @@ router.get('/delete/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
     console.log(`${event} deletado!!!`);
     res.redirect('/pet/'+ event.owner)
     })
-    .catch(error => console.log('Falha ao deletar evento ', error));
+    .catch(error => {
+        console.log('Falha ao deletar evento ', error)
+        res.redirect('/pet/'+ id)
+    });
 })
 
 module.exports = router;
