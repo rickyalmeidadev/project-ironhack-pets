@@ -10,11 +10,18 @@
       <div class="col-md-4 p-1">
         <div class="card" style="width: 100%;">
           <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <h6 class="card-subtitle my-2 text-muted">Tipo: {{type}}</h6>
-            <h6 class="card-subtitle my-2 text-muted">Data: {{date}}</h6>
-            <h6 class="card-subtitle my-2 text-muted">Pet: {{owner.name}}</h6>
-            <a href="" class="btn btn-main mt-1">Ver mais</a>
+            <div class="row">
+              <div class="col-3 d-flex justify-content-center align-items-center">
+              <i class="far fa-calendar-check display-4"></i>
+              </div>
+              <div class="col-9">
+                <h5 class="card-title">{{title}}</h5>
+                <h6 class="card-subtitle my-2 text-muted">Tipo: {{type}}</h6>
+                <h6 class="card-subtitle my-2 text-muted">Data: {{date}}</h6>
+                <h6 class="card-subtitle my-2 text-muted">Pet: {{owner.name}}</h6>
+                {{!-- <a href="#" class="btn btn-main mt-1">Ver mais</a> --}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -36,12 +43,10 @@
     {{#each obj.pets}}
       <div class="col-sm-6 col-lg-3 p-1">
         <div class="card" style="width: 100%;">
-          <img
-            src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            class="card-img-top" alt="...">
+          <img src="{{path}}" class="card-img-top" alt="{{originalName}}">
           <div class="card-body">
             <h5 class="card-title text-center">{{name}}</h5>
-            <h6 class="card-subtitle my-2 text-center text-muted">Total de eventos: X</h6>
+            <h6 class="card-subtitle my-2 text-center text-muted">Espécie: {{species}}</h6>
             <a href="/pet/{{_id}}" class="btn btn-block btn-main mt-1">Ver detalhes</a>
           </div>
         </div>
@@ -65,7 +70,7 @@
           <h5 class="modal-title" id="modalAdicionarPetTitle">Adicionar Pet</h5>
         </div>
         <div class="modal-body">
-          <form action="/pet/add" method="POST">
+          <form action="/pet/add" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label for="name">Nome</label>
               <input type="text" placeholder="Seu Pet" name="name" class="form-control" aria-describedby="name"
@@ -87,12 +92,16 @@
               <input type="date" name="birthdate" class="form-control" aria-describedby="birthdate" required>
             </div>
             {{!-- <div class="form-group">
-              <label for="inputPhoto">Foto</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFileLangHTML">
-                <label class="custom-file-label" for="inputPhoto" data-browse="Procurar">Insira uma foto</label>
-              </div>
+              <label for="photo">Foto</label>
+              <input type="file" name="photo">
             </div> --}}
+            <div class="form-group">
+              <label for="photo">Foto</label>
+              <div class="custom-file">
+                <input type="file" name="photo" class="custom-file-input">
+                <label class="custom-file-label" for="photo" data-browse="Procurar"></label>
+              </div>
+            </div>
             <button type="submit" class="btn btn-main btn-block">Adicionar Pet</button>
           </form>
         </div>
