@@ -145,8 +145,14 @@ img {
   height: 250px !important;
 }
 
-i {
+.fa-edit {
   cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.fa-edit:hover {
+  opacity: 1;
 }
 
 footer {
