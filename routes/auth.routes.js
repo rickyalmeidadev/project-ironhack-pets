@@ -4,7 +4,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-const passport = require('passport')
+const passport = require('passport');
+const flash = ('connect-flash')
 
 const User = require('../models/User');
 
@@ -50,8 +51,8 @@ router.post('/signup', (req, res, next) => {
 router.post("/login", passport.authenticate("local", {
   successRedirect: '/user',
   failureRedirect: '/',
-  // failureFlash: true,
-  // passReqToCallback: true,
+  failureFlash: true,
+  passReqToCallback: true,
 }));
 
 // Logout Route

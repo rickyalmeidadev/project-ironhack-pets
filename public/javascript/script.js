@@ -29,3 +29,10 @@ const dateFields = document.querySelectorAll('.date-field');
 dateFields.forEach(field => {
   field.innerHTML = field.innerHTML.replace(/(\d{4})-(\d{2})-(\d{2})/g, '$3/$2/$1');
 });
+
+
+const modalTrigger = document.querySelector('.modal-trigger');
+
+// if (modalTrigger) {
+  
+// }

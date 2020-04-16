@@ -10,6 +10,7 @@ const hbs = require('hbs');
 const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require("connect-flash");
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('./models/User')
@@ -54,18 +55,27 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+// Flash
+app.use(flash());
+
 // Passport local strategy
 passport.use(
-  new LocalStrategy((username, password, done) => {
+  new LocalStrategy({
+    passReqToCallback: true
+  }, (req, username, password, done) => {
     User.findOne({ email: username }, (err, user) => {
       if (err) {
         return done(err);
       }
       if (!user) {
-        return done(null, false);
+        return done(null, false, {
+          message: "Email ou senha incorretos"
+        });
       }
       if (!bcrypt.compareSync(password, user.password)) {
-        return done(null, false);
+        return done(null, false, {
+          message: "Email ou senha incorretos"
+        });
       }
       return done(null, user);
     });
