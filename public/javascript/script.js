@@ -20,6 +20,6 @@ const photoLabel = document.getElementById('photo-label');
 
 if (photoInput) {
   photoInput.addEventListener('change', () => {
-    photoLabel.innerHTML = photoInput.value;
+    photoLabel.innerHTML = `${photoInput.value.slice(0,25)}...`;
   });
 }

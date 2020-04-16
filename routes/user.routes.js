@@ -20,32 +20,23 @@ router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
             return petsIds.includes(JSON.stringify(event.owner._id));
           });
           
-          // let dateNow = new Date()
-          // let yearNow = dateNow.getFullYear()
-          // let monthNow = dateNow.getMonth()
-          // let dayNow = dateNow.getDate()
+          let dateNow = new Date()
+          let yearNow = dateNow.getFullYear()
+          let monthNow = dateNow.getMonth()
+          let dayNow = dateNow.getDate()
+      
+          events = events.filter(event => {
+            const YearMonthDay = event.date.split('-')
+            const [year, month, day] = YearMonthDay;
+            
+            if (Number(year) > yearNow) return true;
+            if (Number(year) === yearNow && Number(month) > monthNow) return true;
+            if (Number(year) === yearNow && Number(month) === monthNow && Number(day) > dayNow) return true;
+            return false;
+          });
 
-          // events = events.filter(event => {
-          //   const YearMonthDay = event.date.split('-')
-          //   [year, month, day] = YearMonthDay;
-          //   console.log(`
-          //     YearNow = ${yearNow}
-          //     MonthNow = ${monthNow}
-          //     DayNow = ${dayNow}
-
-          //     YearEvent = ${year}
-          //     MonthEven = ${month}
-          //     DayEvent = ${day}
-          //   `) 
-          //   if (year > yearNow) return true;
-          //   if (year === yearNow && month > monthNow) return true;
-          //   if (year === yearNow && month === monthNow && day > dayNow) return true;
-          //   return false;
-          // })
-          
           events = events.slice(0,6)
 
-          console.log(events);
           const obj = {
             user,
             pets,
