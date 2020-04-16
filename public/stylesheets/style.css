@@ -63,6 +63,10 @@ body {
 
 }
 
+.title-brand h1 {
+  font-size: 6rem;
+}
+
 .site-title {
   position: relative;
   height: 100vh;
@@ -155,20 +159,22 @@ footer p {
   margin: 0
 }
 
-#info-1, #info-3 {
+.info-opacity {
   opacity: 0;
-  animation: from-right 1s ease-in-out forwards;
 }
 
-#info-2 {
-  opacity: 0;
-  animation: from-left 1s ease-in-out forwards;
+.go-right {
+  animation: go-right 1.6s ease-in-out forwards;
 }
 
-@keyframes from-right {
+.go-left {
+  animation: go-left 1.6s ease-in-out forwards;
+}
+
+@keyframes go-right {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(50px);
   }
   to {
     opacity: 1;
@@ -176,13 +182,29 @@ footer p {
   }
 }
 
-@keyframes from-left {
+@keyframes go-left {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(-50px);
   }
   to {
     opacity: 1;
     transform: translateX(0px);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .title-brand h1 {
+    font-size: 3rem;
+  }
+
+  .title-brand h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 600px) {
+  .title-brand h1 {
+    font-size: 4rem;
   }
 }
