@@ -15,7 +15,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Tipo: </strong> {{obj.pet.species}}</li>
-          <li class="list-group-item"><strong>Nascimento: </strong> {{obj.pet.birthdate}}</li>
+          <li class="list-group-item date-field"><strong>Nascimento: </strong> {{obj.pet.birthdate}}</li>
           <li class="list-group-item"><strong>Dono: </strong> {{obj.pet.owner.name}}</li>
         </ul>
       </div>
@@ -36,7 +36,7 @@
                   <i class="fas fa-edit" data-toggle="modal" data-target="#modalEditEvent-{{_id}}"></i>
                 </div>
                 <h6 class="card-subtitle my-2 text-muted">Tipo: {{type}}</h6>
-                <h6 class="card-subtitle my-2 text-muted">Data: {{date}}</h6>
+                <h6 class="card-subtitle my-2 text-muted date-field">Data: {{date}}</h6>
                 <h6 class="card-subtitle my-2 text-muted">Descrição: {{description}}</h6>
               </div>
             </div>

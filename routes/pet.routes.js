@@ -121,12 +121,19 @@ router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn
 // pet delete
 router.get('/delete/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
-  Pet.findByIdAndDelete(id)
-  .then(pet => {
-    console.log(`${pet} deletado!!!`);
-    res.redirect('/user')
+  // delete related events
+  // code here
+  Event.deleteMany({ owner: id })
+  .then(events => {
+    console.log(`${events} deletados!!!`);
+    Pet.findByIdAndDelete(id)
+    .then(pet => {
+      console.log(`${pet} deletado!!!`);
+      res.redirect('/user')
+    })
+    .catch(error => console.log('Falha ao deletar pet ', error));
   })
-  .catch(error => console.log('Falha ao deletar pet ', error));
+  .catch(error => console.log('Falha ao deletar eventos ', error));
 })
 
 module.exports = router;

@@ -20,6 +20,12 @@ const photoLabel = document.getElementById('photo-label');
 
 if (photoInput) {
   photoInput.addEventListener('change', () => {
-    photoLabel.innerHTML = `${photoInput.value.slice(0,25)}...`;
+    photoLabel.innerHTML = `${photoInput.value.slice(0, 25)}...`;
   });
 }
+
+const dateFields = document.querySelectorAll('.date-field');
+
+dateFields.forEach(field => {
+  field.innerHTML = field.innerHTML.replace(/(\d{4})-(\d{2})-(\d{2})/g, '$3/$2/$1');
+});

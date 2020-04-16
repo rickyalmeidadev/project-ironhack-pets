@@ -5,19 +5,24 @@
 
   {{!-- Next Events --}}
 
-  <div class="row">
+  <div class="row my-5">
+    {{#if obj.noEvents}}
+      <div class="col-12 p-5">
+        <h3 class="text-muted text-center">{{obj.noEvents}}</h3>
+      </div>
+    {{/if}}
     {{#each obj.events}}
       <div class="col-md-4 p-1">
         <div class="card" style="width: 100%;">
           <div class="card-body">
             <div class="row">
               <div class="col-3 d-flex justify-content-center align-items-center">
-              <i class="far fa-calendar-check display-4"></i>
+                <i class="far fa-calendar-check display-4"></i>
               </div>
               <div class="col-9">
                 <h5 class="card-title">{{title}}</h5>
                 <h6 class="card-subtitle my-2 text-muted">Tipo: {{type}}</h6>
-                <h6 class="card-subtitle my-2 text-muted">Data: {{date}}</h6>
+                <h6 class="card-subtitle my-2 text-muted date-field">Data: {{date}}</h6>
                 <h6 class="card-subtitle my-2 text-muted">Pet: {{owner.name}}</h6>
                 {{!-- <a href="#" class="btn btn-main mt-1">Ver mais</a> --}}
               </div>
@@ -40,6 +45,11 @@
   </div>
 
   <div class="row my-5">
+    {{#if obj.noPets}}
+    <div class="col-12 p-5">
+      <h3 class="text-muted text-center">{{obj.noPets}}</h3>
+    </div>
+    {{/if}}
     {{#each obj.pets}}
       <div class="col-sm-6 col-lg-3 p-1">
         <div class="card" style="width: 100%;">
@@ -99,7 +109,8 @@
               <label for="photo">Foto</label>
               <div class="custom-file">
                 <input type="file" name="photo" class="custom-file-input" id="photo-input">
-                <label class="custom-file-label" for="photo" id="photo-label" data-browse="Procurar">Insira uma foto</label>
+                <label class="custom-file-label" for="photo" id="photo-label" data-browse="Procurar">Insira uma
+                  foto</label>
               </div>
             </div>
             <button type="submit" class="btn btn-main btn-block">Adicionar Pet</button>
