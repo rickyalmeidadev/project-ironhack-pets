@@ -47,7 +47,7 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   border-bottom: 4px solid var(--main-color);
 }
 

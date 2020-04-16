@@ -71,7 +71,24 @@ router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (
   }
 });
 
-// pet update
+// pet edit photo
+router.post('/edit/photo/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const id = req.params.id;
+  Pet.findByIdAndUpdate(id, {
+    path: req.file.url,
+    originalName: req.file.originalname
+  },
+  { 
+    new: true 
+  })
+  .then(pet => {
+  console.log(`${pet} foto atualizada!!!`);
+  res.redirect('/pet/'+ id)
+  })
+  .catch(error => console.log('Falha ao atualizar foto do pet: ', error));
+})
+
+// pet edit
 router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const {name, species, birthdate} = req.body;
   const id = req.params.id;
@@ -104,12 +121,19 @@ router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn
 // pet delete
 router.get('/delete/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
-  Pet.findByIdAndDelete(id)
-  .then(pet => {
-    console.log(`${pet} deletado!!!`);
-    res.redirect('/user')
+  // delete related events
+  // code here
+  Event.deleteMany({ owner: id })
+  .then(events => {
+    console.log(`${events} deletados!!!`);
+    Pet.findByIdAndDelete(id)
+    .then(pet => {
+      console.log(`${pet} deletado!!!`);
+      res.redirect('/user')
+    })
+    .catch(error => console.log('Falha ao deletar pet ', error));
   })
-  .catch(error => console.log('Falha ao deletar pet ', error));
+  .catch(error => console.log('Falha ao deletar eventos ', error));
 })
 
 module.exports = router;
