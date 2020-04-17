@@ -5,16 +5,103 @@ const Pet = require('../models/Pet');
 const ensureLogin = require("connect-ensure-login");
 const uploadCloud = require('../config/cloudinary.js')
 
-// pet details
-router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  const user = req.user;
+// pet filter
+router.get('/filter/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const { user } = req;
   const { id } = req.params;
+  let { eventRange, eventOrder, eventType } = req.query;
+  
+
+  let dateNow = new Date()
+  let yearNow = dateNow.getFullYear()
+  let monthNow = dateNow.getMonth()
+  let dayNow = dateNow.getDate()
+
+  if (monthNow < 10) monthNow = `0${monthNow}`
+  if (dayNow < 10) dayNow = `0${dayNow}`
+  const dateForFilter = `${yearNow}-${monthNow}-${dayNow}`
+
+  eventOrder = Number(eventOrder);
+  
+  // filtrar datas ou mostrar todos
+  // especifico, todos tipos
+
+  // filtrar data e especifico
+  // filtrar data e all
+  // data all e especifico
+  // all all vem por ultimo
+
+  let query = {};
+
+  if (eventRange === 'filterDate' && eventType !== 'all') {
+    query = {
+      date: { $gt: dateForFilter },
+      type: eventType,
+      owner: id
+    }
+  } else if (eventRange === 'filterDate' && eventType === 'all') { 
+    query = {
+      date: { $gt: dateForFilter },
+      owner: id
+    }
+  } else if (eventRange === 'all' && eventType !== 'all') {
+    query = {
+      type: eventType,
+      owner: id
+    }
+  } else {
+    query = { owner: id }
+  }
   
 
   Pet.findById(id)
   .populate('owner')
   .then(pet => {
-    Event.find({owner:id})
+    Event.find(query)
+    .sort({ date: 1 })
+    .then(events => {
+      const obj = {
+        pet,
+        user,
+        events
+      }
+      res.render('pet', {obj})
+    })
+    .catch(error => {
+      console.log('>>> Pois é, não rolou, estamos no catch do Event: ', error)
+      const obj = {
+        pet,
+        user
+      }
+      res.render('pet', {obj})
+    })
+  })
+  .catch(error => {
+    console.log('Falha ao acessar página do pet: ', error)
+    res.redirect('/user')
+  });
+
+
+})
+
+// pet details
+router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const user = req.user;
+  const { id } = req.params;
+  
+  let dateNow = new Date()
+  let yearNow = dateNow.getFullYear()
+  let monthNow = dateNow.getMonth()
+  let dayNow = dateNow.getDate()
+
+  if (monthNow < 10) monthNow = `0${monthNow}`
+  if (dayNow < 10) dayNow = `0${dayNow}`
+  const dateForFilter = `${yearNow}-${monthNow}-${dayNow}`
+
+  Pet.findById(id)
+  .populate('owner')
+  .then(pet => {
+    Event.find({ owner:id, date: { $gt: dateForFilter }})
     .sort({date: 1})
     .then(events => {
       const obj = {

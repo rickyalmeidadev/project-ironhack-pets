@@ -74,33 +74,35 @@ eventCards.forEach((_, i) => {
   switch (type) {
     case 'Vacina':
       iconDiv[i].innerHTML = `
-        <i class="fas fa-syringe display-4"></i>
+        <img class="event-icon" src="/images/syringe.svg" alt="">
       `;
       break;
     case 'Consulta':
       iconDiv[i].innerHTML = `
-        <i class="fas fa-user-md display-4"></i>
+        <img class="event-icon" src="/images/user-md.svg" alt="">
       `;
       break;
     case 'Cirurgia':
       iconDiv[i].innerHTML = `
-        <i class="fas fa-hospital-alt display-4"></i>
+        <img class="event-icon" src="/images/hospital-alt.svg" alt="">
       `;
       break;
     case 'Banho/Tosa':
       iconDiv[i].innerHTML = `
-        <i class="fas fa-shower display-4"></i>
+        <img class="event-icon" src="/images/shower.svg" alt="">
       `;
       break;
     case 'Aniversario':
       iconDiv[i].innerHTML = `
-        <i class="fas fa-birthday-cake display-4"></i>
+        <img class="event-icon" src="/images/birthday-cake.svg" alt="">
       `;
       break;
     default:
       iconDiv[i].innerHTML = `
-        <i class="far fa-calendar-check display-4"></i>
+        <img class="event-icon" src="/images/calendar-check.svg" alt="">
       `;
       break;
   }
 });
+
+
