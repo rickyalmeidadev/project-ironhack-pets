@@ -63,3 +63,44 @@ if (typeSelects) {
     });
   });
 }
+
+const eventCards = document.querySelectorAll('.event-card');
+const iconDiv = document.querySelectorAll('.icon-div');
+const typeH6 = document.querySelectorAll('.type-h6');
+
+eventCards.forEach((_, i) => {
+  let type = typeH6[i].innerText.replace('Tipo: ', '')
+
+  switch (type) {
+    case 'Vacina':
+      iconDiv[i].innerHTML = `
+        <i class="fas fa-syringe display-4"></i>
+      `;
+      break;
+    case 'Consulta':
+      iconDiv[i].innerHTML = `
+        <i class="fas fa-user-md display-4"></i>
+      `;
+      break;
+    case 'Cirurgia':
+      iconDiv[i].innerHTML = `
+        <i class="fas fa-hospital-alt display-4"></i>
+      `;
+      break;
+    case 'Banho/Tosa':
+      iconDiv[i].innerHTML = `
+        <i class="fas fa-shower display-4"></i>
+      `;
+      break;
+    case 'Aniversario':
+      iconDiv[i].innerHTML = `
+        <i class="fas fa-birthday-cake display-4"></i>
+      `;
+      break;
+    default:
+      iconDiv[i].innerHTML = `
+        <i class="far fa-calendar-check display-4"></i>
+      `;
+      break;
+  }
+});
