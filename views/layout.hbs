@@ -24,21 +24,21 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li class="nav-item text-center">
             <a class="nav-link" href="/">Home</a>
           </li>
           {{#if obj.user}}
-            <li class="nav-item">
+            <li class="nav-item text-center">
               <a class="nav-link" href="/user">Perfil</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item text-center">
               <a class="nav-link" href="/auth/logout">Sair</a>
             </li>
           {{else}}
-            <li class="nav-item" data-toggle="modal" data-target="#modalEntrar">
+            <li class="nav-item text-center" data-toggle="modal" data-target="#modalEntrar" id="modalShow">
               <a class="nav-link" href="#">Entrar</a>
             </li>
-            <li class="nav-item" data-toggle="modal" data-target="#modalCadastrar-se">
+            <li class="nav-item text-center" data-toggle="modal" data-target="#modalCadastrar-se">
               <a class="nav-link" href="#">Cadastrar-se</a>
             </li>
           {{/if}}
@@ -57,8 +57,8 @@
       </div>
     </div>
   </footer>
-  
-  <script src="/javascript/script.js"></script>
+
+  {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script> --}}
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -68,6 +68,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+  <script src="/javascript/script.js"></script>
 </body>
 
 </html>

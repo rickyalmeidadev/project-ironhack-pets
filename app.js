@@ -69,12 +69,12 @@ passport.use(
       }
       if (!user) {
         return done(null, false, {
-          message: "Email ou senha incorretos"
+          message: "Email ou senha incorretos, tente novamente"
         });
       }
       if (!bcrypt.compareSync(password, user.password)) {
         return done(null, false, {
-          message: "Email ou senha incorretos"
+          message: "Email ou senha incorretos, tente novamente"
         });
       }
       return done(null, user);
