@@ -76,6 +76,7 @@ body {
 
 .site-title h1, h2 {
   text-shadow: 1px 1px 3px var(--secondary-color-lighter);
+  margin: 0;
 }
 
 .btn-main {
@@ -149,6 +150,7 @@ img {
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out;
+  z-index: 100;
 }
 
 .fa-edit:hover {
@@ -202,6 +204,7 @@ footer p {
 @media screen and (max-width: 400px) {
   .title-brand h1 {
     font-size: 3rem;
+    margin: 0;
   }
 
   .title-brand h2 {

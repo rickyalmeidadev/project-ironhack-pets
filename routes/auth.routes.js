@@ -38,11 +38,12 @@ router.post('/signup', (req, res, next) => {
   })
   .then(user => {
     console.log(user);
+    
     res.render('index');
   })
   .catch(error => {
     console.log('Failed to create user, error: ', error);
-    res.render('index');
+    res.render('index', { messageSignUp: 'Falha ao cadastrar-se, tente novamente' });
   });
 });
 

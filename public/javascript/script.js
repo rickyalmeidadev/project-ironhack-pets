@@ -1,3 +1,11 @@
+if ($('#errorMessageSignUp').text() !== '') {
+  $('#modalCadastrar-se').modal('show');
+}
+
+if ($('#errorMessageLogin').text() !== '') {
+  $('#modalEntrar').modal('show');
+}
+
 const info1 = document.getElementById('info-1');
 const info2 = document.getElementById('info-2');
 const info3 = document.getElementById('info-3');
@@ -8,9 +16,9 @@ if (info1) {
       info.classList.add('info-opacity');
     });
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 109) info1.classList.add('go-right');
-      if (window.scrollY > 412) info2.classList.add('go-left');
-      if (window.scrollY > 722) info3.classList.add('go-right');
+      if (window.scrollY > 120) info1.classList.add('go-right');
+      if (window.scrollY > 430) info2.classList.add('go-left');
+      if (window.scrollY > 750) info3.classList.add('go-right');
     });
   }
 }
@@ -30,9 +38,28 @@ dateFields.forEach(field => {
   field.innerHTML = field.innerHTML.replace(/(\d{4})-(\d{2})-(\d{2})/g, '$3/$2/$1');
 });
 
+const speciesSelect = document.querySelectorAll('#species option');
+const speciesLi = document.querySelector('#speciesLi');
 
-const modalTrigger = document.querySelector('.modal-trigger');
+if (speciesSelect.length > 0) {
+  const species = speciesLi.innerText.replace('Tipo: ', '');
+  speciesSelect.forEach(option => {
+    if (option.value === species) {
+      option.selected = 'selected';
+    }
+  });
+}
 
-// if (modalTrigger) {
-  
-// }
+const typeSelects = document.querySelectorAll('.type-select');
+
+if (typeSelects) {
+  const typesH6 = document.querySelectorAll('.type-h6');
+  typeSelects.forEach((typeSelect, i) => {
+    typeSelect.querySelectorAll('option').forEach(option => {
+      let type = typesH6[i].innerText.replace('Tipo: ', '');
+      if (option.value === type) {
+        option.selected = 'selected';
+      }
+    });
+  });
+}
