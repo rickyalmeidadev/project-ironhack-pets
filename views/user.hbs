@@ -52,7 +52,7 @@
     {{/if}}
     {{#each obj.pets}}
       <div class="col-sm-6 col-lg-3 p-1">
-        <div class="card" style="width: 100%;">
+        <div class="card img-crop" style="width: 100%;">
           <img src="{{path}}" class="card-img-top" alt="{{originalName}}">
           <div class="card-body">
             <h5 class="card-title text-center">{{name}}</h5>
@@ -92,6 +92,7 @@
             <div class="form-group">
               <label for="species">Tipo</label>
               <select class="custom-select" name="species" required>
+                <option value="" selected disabled>Escolher</option>
                 <option value="Cachorro">Cachorro</option>
                 <option value="Gato">Gato</option>
                 <option value="Ave">Ave</option>

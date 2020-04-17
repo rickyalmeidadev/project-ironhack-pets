@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
 
 :root {
   --main-color: #f8981b;
@@ -34,6 +35,11 @@ body {
   font-weight: 700;
   color: var(--secondary-color);
   font-size: 1.6rem;
+}
+.navbar-brand img {
+  margin: auto;
+  height: 24px;
+  padding-right: 10px;
 }
 
 .nav-link {
@@ -140,13 +146,21 @@ hr {
   right: 20px;
   top: 15px;
 }
-
-img {
+ 
+.img-crop img {
   object-fit: contain;
   height: 250px !important;
+} 
+
+.fa-edit-photo {
+  position: absolute;
+  right: 6%;
+  top: 4%;
+  z-index: 100;
 }
 
 .fa-edit {
+  height: 16px;
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out;
@@ -155,6 +169,12 @@ img {
 
 .fa-edit:hover {
   opacity: 1;
+}
+
+.event-icon {
+  width: 100%;
+  max-width: 70% ;
+
 }
 
 footer {
