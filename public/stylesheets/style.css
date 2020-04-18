@@ -90,7 +90,7 @@ header {
   height: 100vh;
   background-color: white;
   position: relative;
-  background-image: url('https://e-dou.com.br/wp-content/uploads/2016/07/dog_cat_for20petco.jpg');
+  background-image: url('/images/bg-img.jpg');
   background-size: contain;
   background-position-x: center;
   background-repeat: no-repeat;
