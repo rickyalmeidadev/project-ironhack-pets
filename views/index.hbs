@@ -1,15 +1,12 @@
-<header class="site-header mt-5">
+<header>
   {{!-- Title --}}
-  <div class="container d-flex justify-content-center align-items-center text-center site-title pb-5">
-    <div class="row">
-      <div class="title-brand col-12">
-        <h1 class="my-5">PetSchedule</h1>
-        <h2 class="my-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde, id.</h2>
-        <a href="#" class="btn btn-lg btn-main my-5">Botão</a>
-      </div>
-    </div>
+  <div class="text-center site-title title-brand">
+    <h1>PetSchedule</h1>
   </div>
 </header>
+<div class="bg-size">
+  <div class="site-bg"></div>
+</div>
 
 {{!-- Info Section --}}
 <main class="site-main">
@@ -82,7 +79,7 @@
             <input type="password" placeholder="suasenha" name="password" class="form-control" required>
           </div>
           {{#if message}}
-            <p class="text-center" id="errorMessageLogin">{{message}}</p>
+            <p class="text-center error-msg" id="errorMessageLogin">{{message}}</p>
           {{/if}}
           <button type="submit" class="btn btn-main btn-block">Entrar</button>
         </form>
@@ -121,7 +118,7 @@
               id="exampleInputPassword1" required>
           </div>
           {{#if messageSignUp}}
-            <p class="text-center" id="errorMessageSignUp">{{messageSignUp}}</p>
+            <p class="text-center error-msg" id="errorMessageSignUp">{{messageSignUp}}</p>
           {{/if}}
           <button type="submit" class="btn btn-main btn-block">Cadastrar-se</button>
         </form>

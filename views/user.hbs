@@ -1,7 +1,7 @@
 <div class="container mt-3 pt-5">
   {{!--  Welcome Section --}}
-  <h1 class="my-5">Bem vindo, {{obj.user.name}}</h1>
-  <h3 class="my-3">Próximos eventos:</h3>
+  <h1 class="my-5 title-style">Bem vindo, {{obj.user.name}}</h1>
+  <h3 class="my-3 sub-title-style">Próximos eventos:</h3>
 
   {{!-- Next Events --}}
 
@@ -20,7 +20,7 @@
                 <i class="far fa-calendar-check display-4"></i>
               </div>
               <div class="col-9">
-                <h5 class="card-title">{{title}}</h5>
+                <h5 class="card-title sub-title-style">{{title}}</h5>
                 <h6 class="card-subtitle my-2 text-muted type-h6">Tipo: {{type}}</h6>
                 <h6 class="card-subtitle my-2 text-muted date-field">Data: {{date}}</h6>
                 <h6 class="card-subtitle my-2 text-muted">Pet: {{owner.name}}</h6>
@@ -37,7 +37,7 @@
   {{!-- Pets --}}
   <div class="container">
     <div class="row justify-content-between align-itemns-center">
-      <h3 class="my-3">Meus Pets:</h3>
+      <h3 class="my-3 sub-title-style">Meus Pets:</h3>
       <div class="d-flex justify-content-center- align-items-center">
         <button class="btn btn-main" data-toggle="modal" data-target="#modalAdicionarPet">Adicionar Pet</button>
       </div>
@@ -55,7 +55,7 @@
         <div class="card img-crop" style="width: 100%;">
           <img src="{{path}}" class="card-img-top" alt="{{originalName}}">
           <div class="card-body">
-            <h5 class="card-title text-center">{{name}}</h5>
+            <h5 class="card-title text-center sub-title-style">{{name}}</h5>
             <h6 class="card-subtitle my-2 text-center text-muted">Tipo: {{species}}</h6>
             <a href="/pet/{{_id}}" class="btn btn-block btn-main mt-1">Ver detalhes</a>
           </div>
