@@ -9,7 +9,7 @@ const uploadCloud = require('../config/cloudinary.js')
 router.get('/filter/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const { user } = req;
   const { id } = req.params;
-  let { eventRange, eventOrder, eventType } = req.query;
+  let { eventRange, eventType } = req.query;
   
 
   let dateNow = new Date()
@@ -20,16 +20,6 @@ router.get('/filter/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   if (monthNow < 10) monthNow = `0${monthNow}`
   if (dayNow < 10) dayNow = `0${dayNow}`
   const dateForFilter = `${yearNow}-${monthNow}-${dayNow}`
-
-  eventOrder = Number(eventOrder);
-  
-  // filtrar datas ou mostrar todos
-  // especifico, todos tipos
-
-  // filtrar data e especifico
-  // filtrar data e all
-  // data all e especifico
-  // all all vem por ultimo
 
   let query = {};
 
@@ -52,7 +42,7 @@ router.get('/filter/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   } else {
     query = { owner: id }
   }
-  
+
 
   Pet.findById(id)
   .populate('owner')

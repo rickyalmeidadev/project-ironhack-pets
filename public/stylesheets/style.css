@@ -24,7 +24,36 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: var(--white-color);
+  /* background-color: var(--white-color); */
+  background-color: white
+}
+
+header {
+  margin-top: 80px;
+}
+
+.title-style {
+  font-weight: 700;
+  text-shadow: 1px 1px 1px var(--secondary-color-lighter);
+  color: var(--main-color);
+}
+
+.sub-title-style {
+  font-weight: 600;
+  /* text-shadow: 1px 1px 1px var(--secondary-color-lighter); */
+  color: var(--main-color);
+}
+
+.error-msg {
+  color: var(--danger-color);
+}
+
+.card {
+  border: 1px solid var(--main-color);
+}
+
+.card:hover {
+  box-shadow: 1px 1px 3px var(--main-color);
 }
 
 .navbar {
@@ -32,10 +61,15 @@ body {
 }
 
 .navbar-brand {
-  font-weight: 700;
+  font-weight: 900;
   color: var(--secondary-color);
   font-size: 1.6rem;
 }
+
+.navbar-brand:hover {
+  transform: scale(1.1);
+}
+
 .navbar-brand img {
   margin: auto;
   height: 24px;
@@ -43,21 +77,28 @@ body {
 }
 
 .nav-link {
-  font-weight: 600;
+  font-weight: 700;
+  color: white !important;
 }
 
-.site-header {
+.nav-link:hover {
+  transform: scale(1.1);
+}
+
+.site-bg {
   /* background-color: var(--secondary-color); */
+  height: 100vh;
+  background-color: white;
   position: relative;
-  background-image: url('/images/header-background.jpg');
-  background-size: cover;
-  background-position: center center;
+  background-image: url('https://e-dou.com.br/wp-content/uploads/2016/07/dog_cat_for20petco.jpg');
+  background-size: contain;
+  background-position-x: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  border-bottom: 4px solid var(--main-color);
+  /* border-bottom: 4px solid var(--main-color); */
 }
 
-.site-header::after {
+/* .site-header::after {
   position: absolute;
   content: '';
   left: 0;
@@ -67,7 +108,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))
 
-}
+} */
 
 .title-brand h1 {
   font-size: 6rem;
@@ -75,31 +116,33 @@ body {
 
 .site-title {
   position: relative;
-  height: 100vh;
   color: var(--main-color);
   z-index: 2;
 }
 
-.site-title h1, h2 {
-  text-shadow: 1px 1px 3px var(--secondary-color-lighter);
+.site-title h1 {
+  font-weight: 700;
+  text-shadow: 1px 1px 1px var(--secondary-color-lighter);
   margin: 0;
 }
 
 .btn-main {
+  border: 1px solid var(--main-color);
   background-color: var(--main-color);
   font-weight: 600;
-  color: var(--secondary-color);
+  color: white;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
 }
 
 .btn-main:hover {
-  background-color: var(--main-color-lighter);
-  color: var(--secondary-color);
+  background-color: transparent;
+  color: var(--main-color);
   text-decoration: none;
 }
 
 .btn-delete {
+  border: 1px solid var(--danger-color);
   background-color: var(--danger-color);
   font-weight: 600;
   color: white;
@@ -108,23 +151,25 @@ body {
 }
 
 .btn-delete:hover {
-  background-color: var(--danger-color-lighter);
-  color: white;
+  background-color: transparent;
+  color: var(--danger-color);
   text-decoration: none;
 }
 
-.site-main {
+/* .site-main {
   background-color: var(--white-color);
-}
+} */
 
 .main-images {
   max-width: 400px;
 }
 
 .site-info > h1 {
+  font-weight: 700;
+  text-shadow: 1px 1px 1px var(--secondary-color-lighter);
+  margin: 0;
   font-size: 3.8rem;
-  font-weight: 600;
-  color: var(--secondary-color);
+  color: var(--main-color);
 }
 
 .site-info > p {
@@ -178,13 +223,13 @@ hr {
 }
 
 footer {
-  background-color: var(--secondary-color);
-  border-top: 4px solid var(--main-color);
+  background-color: var(--main-color);
+  /* border-top: 4px solid var(--secondary-color); */
 }
 
 footer p {
   font-weight: 600;
-  margin: 0
+  margin: 0;
 }
 
 .info-opacity {
@@ -224,7 +269,6 @@ footer p {
 @media screen and (max-width: 400px) {
   .title-brand h1 {
     font-size: 3rem;
-    margin: 0;
   }
 
   .title-brand h2 {

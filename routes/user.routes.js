@@ -10,9 +10,6 @@ router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
   Pet.find({ owner: id })
     .then(pets => {
-      console.log('>>> Estou aqui no then dos pets <<<');
-      console.log('Esses foram os pets que eu encontrei: ', pets);
-
       if (pets.length === 0) {
         const obj = { 
           user,
