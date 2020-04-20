@@ -34,23 +34,23 @@ router.post('/add/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
         console.log('Término: ', eventEndTime)
 
         const calendarEvent = {
-          summary: title,
-          description: type,
-          start: { date: eventStartTime },
-          end: { date: eventEndTime },
-          colorId: 5,
+            summary: title,
+            description: type,
+            start: { date: eventStartTime },
+            end: { date: eventEndTime },
+            colorId: 5,
         };
 
         calendar.events.insert(
-          {
-            calendarId: 'primary',
-            resource: calendarEvent,
-          },
-          err => {
-            if (err) return console.log('>>> Erro ao criar evento no calendário: ', err)
+            {
+                calendarId: 'primary',
+                resource: calendarEvent,
+            },
+            err => {
+                if (err) return console.log('>>> Erro ao criar evento no calendário: ', err)
 
-            return console.log('>>> Deu certo, evento criado no calendário. Parabéns!')
-          }
+                return console.log('>>> Deu certo, evento criado no calendário. Parabéns!')
+            }
         );
 
         res.redirect('/pet/'+ id) // id do pet

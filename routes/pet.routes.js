@@ -120,9 +120,11 @@ router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (
   const { name, species, birthdate } = req.body;
   const id = req.user._id;
 
-  const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
 
+  
   if (req.file) {
+    const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
+    
     Pet.create({
       name,
       species,
