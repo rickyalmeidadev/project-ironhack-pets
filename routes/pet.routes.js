@@ -119,13 +119,16 @@ router.get('/:id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const { name, species, birthdate } = req.body;
   const id = req.user._id;
+
+  const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
+
   if (req.file) {
     Pet.create({
       name,
       species,
       birthdate,
       owner: id,
-      path: req.file.url,
+      path: customUrl,
       originalName: req.file.originalname
     })
     .then(pet => {
@@ -151,8 +154,10 @@ router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (
 // pet edit photo
 router.post('/edit/photo/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
+  const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
+
   Pet.findByIdAndUpdate(id, {
-    path: req.file.url,
+    path: customUrl,
     originalName: req.file.originalname
   },
   { 
@@ -169,12 +174,15 @@ router.post('/edit/photo/:id', uploadCloud.single('photo'), ensureLogin.ensureLo
 router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const {name, species, birthdate} = req.body;
   const id = req.params.id;
+
+  const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
+
   if (req.file) {
     Pet.findByIdAndUpdate(id, {
       name, 
       species, 
       birthdate,
-      path: req.file.url,
+      path: customUrl,
       originalName: req.file.originalname
     },
     { 
