@@ -17,6 +17,13 @@ var storage = cloudinaryStorage({
   }
 });
 
-const uploadCloud = multer({ storage: storage });
+const uploadCloud = multer(
+  {
+    storage: storage,
+    limits:{
+      fileSize: 3000000
+    }
+  }
+);
 
 module.exports = uploadCloud;
