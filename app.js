@@ -10,10 +10,16 @@ const hbs = require('hbs');
 const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
-const flash = require("connect-flash");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const flash = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const User = require('./models/User')
+const User = require('./models/User');
+
+// Google Auth
+const { google } = require('googleapis');
+const { OAuth2 } = google.auth;
+const oAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
 
 // Mongoose connection
 mongoose
@@ -60,26 +66,65 @@ app.use(flash());
 
 // Passport local strategy
 passport.use(
-  new LocalStrategy({
-    passReqToCallback: true
-  }, (req, username, password, done) => {
-    User.findOne({ email: username }, (err, user) => {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, {
-          message: "Email ou senha incorretos, tente novamente"
-        });
-      }
-      if (!bcrypt.compareSync(password, user.password)) {
-        return done(null, false, {
-          message: "Email ou senha incorretos, tente novamente"
-        });
-      }
-      return done(null, user);
-    });
-  })
+  new LocalStrategy(
+    {
+      passReqToCallback: true,
+    },
+    (req, username, password, done) => {
+      User.findOne({ email: username }, (err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false, {
+            message: 'Email ou senha incorretos, tente novamente',
+          });
+        }
+        if (!bcrypt.compareSync(password, user.password)) {
+          return done(null, false, {
+            message: 'Email ou senha incorretos, tente novamente',
+          });
+        }
+        return done(null, user);
+      });
+    }
+  )
+);
+
+// Passport Google strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: '/auth/google/callback',
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // to see the structure of the data in received response:
+      console.log('>>> Detalhes da conta do Google: ', profile);
+      console.log('>>> accessToken: ', accessToken);
+      console.log('>>> refreshToken: ', refreshToken);
+
+      const { id, displayName, emails } = profile;
+
+      User.findOne({ googleID: id })
+        .then(user => {
+          console.log('>>> Estou no then do User.findOne, olha a resposta:', user);
+          if (user) {
+            done(null, user);
+            return;
+          }
+
+          User.create({ googleID: id, name: displayName, email: emails[0].value, accessToken, refreshToken })
+            .then(newUser => {
+              console.log('>>> Estou no then do User.create, olha a resposta:', newUser);
+              done(null, newUser);
+            })
+            .catch(err => done(err)); // closes User.create()
+        })
+        .catch(err => done(err)); // closes User.findOne()
+    }
+  )
 );
 
 app.use(passport.initialize());
@@ -102,3 +147,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
+
+module.exports = oAuth2Client;
