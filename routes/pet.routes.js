@@ -177,15 +177,15 @@ router.post('/edit/:id', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn
   const {name, species, birthdate} = req.body;
   const id = req.params.id;
 
-  const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
+  // const customUrl = req.file.url.split('upload/').join('upload/c_thumb,g_auto,h_500,r_0,w_500,x_0/');
 
   if (req.file) {
     Pet.findByIdAndUpdate(id, {
       name, 
       species, 
       birthdate,
-      path: customUrl,
-      originalName: req.file.originalname
+      // path: customUrl,
+      // originalName: req.file.originalname
     },
     { 
       new: true 
