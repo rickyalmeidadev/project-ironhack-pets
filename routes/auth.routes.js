@@ -38,8 +38,13 @@ router.post('/signup', (req, res, next) => {
   })
     .then(user => {
       console.log(user);
-
-      res.render('index');
+      req.login(user, err => {
+        if (err) {
+          res.render('index', { message: 'Algo deu errado, tente entrar com seu novo cadastro' });
+          return;
+        }
+        res.redirect('/user');
+      })
     })
     .catch(error => {
       console.log('Failed to create user, error: ', error);
