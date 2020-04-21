@@ -19,7 +19,7 @@ const PetSchema = new Schema({
   // Bonus: Image
   path: {
     type: String,
-    default: '/images/default-pet-img.svg'
+    default: '/images/paw.svg'
   },
   originalName: String,
 });
