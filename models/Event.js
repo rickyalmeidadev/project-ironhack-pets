@@ -17,13 +17,7 @@ const EventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Pet',
   },
-  // Bonus: Location
-  location: {
-    type: {
-      type: String,
-    },
-    coordinates: [Number],
-  },
+  googleId: String
 });
 
 EventSchema.index({ location: '2dsphere' });
