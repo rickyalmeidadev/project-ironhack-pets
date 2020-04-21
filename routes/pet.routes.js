@@ -135,7 +135,7 @@ router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (
     })
     .then(pet => {
       console.log('Pet criado com sucesso', pet);
-      res.redirect('/user');
+      res.redirect('/pet/' + pet._id);  
     })
     .catch(error => console.log('Falha ao criar pet: ', error));
   } else {
@@ -147,7 +147,7 @@ router.post('/add', uploadCloud.single('photo'), ensureLogin.ensureLoggedIn(), (
     })
     .then(pet => {
       console.log('Pet criado com sucesso', pet);
-      res.redirect('/user');
+      res.redirect('/pet/' + pet._id);
     })
     .catch(error => console.log('Falha ao criar pet: ', error));
   }
