@@ -19,7 +19,8 @@
       </div>
       <div class="col-md-6 mx-auto ml-md-auto text-center p-3 text-md-left site-info">
         <h1 class="py-3">Ligado no seu pet</h1>
-        <p class="py-3">Em nossa plataforma você tem controle de tudo do seu pet, em seu dashboard você se mantém organizado para cada próxima tarefa de seus bichinhos.</p>
+        <p class="py-3">Em nossa plataforma você tem controle de tudo do seu pet, em seu dashboard você se mantém
+          organizado para cada próxima tarefa de seus bichinhos.</p>
       </div>
     </div>
     <div id="info-2" class="row align-items-center py-5">
@@ -30,7 +31,8 @@
       </div>
       <div class="col-md-6 mx-auto mr-md-auto text-center p-3 text-md-right site-info order-md-1">
         <h1 class="py-3">Cuide de todos eles</h1>
-        <p class="py-3">Nós sabemos o quão especial cade um deles são, por isso você pode organizar cada detalhe deles separadamente, garantindo que todos recebam a mesma quantidade de amor.</p>
+        <p class="py-3">Nós sabemos o quão especial cade um deles são, por isso você pode organizar cada detalhe deles
+          separadamente, garantindo que todos recebam a mesma quantidade de amor.</p>
       </div>
     </div>
     <div id="info-3" class="row align-items-center justify-content-between py-5">
@@ -41,14 +43,11 @@
       </div>
       <div class="col-md-6 mx-auto ml-md-auto text-center p-3 text-md-left site-info">
         <h1 class="py-3">Google Sync</h1>
-        <p class="py-3">Além da facilidade de se cadastrar com sua conta já existente, você pode ter seu PetSchedule sincronizado com o Google e todos os eventos em sua Google Calendar.</p>
+        <p class="py-3">Além da facilidade de se cadastrar com sua conta já existente, você pode ter seu PetSchedule
+          sincronizado com o Google e todos os eventos em sua Google Calendar.</p>
       </div>
     </div>
   </div>
-
-
-
-  
 </main>
 
 {{!-- Modal Entrar --}}
@@ -121,6 +120,11 @@
             <p class="text-center error-msg" id="errorMessageSignUp">{{messageSignUp}}</p>
           {{/if}}
           <button type="submit" class="btn btn-main btn-block">Cadastrar-se</button>
+        </form>
+      </div>
+      <div class="modal-footer d-block">
+        <form action="/auth/google" method="GET">
+          <button type="submit" class="btn btn-primary btn-block">Cadastrar-se com Google</button>
         </form>
       </div>
     </div>

@@ -16,7 +16,6 @@ const PetSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  // Bonus: Image
   path: {
     type: String,
     default: '/images/paw.svg'

@@ -8,9 +8,6 @@ const UserSchema = new Schema({
     unique: true,
   },
   password: String,
-  // Bonus: Image
-  path: String,
-  originalName: String,
   googleID: String,
   accessToken: String,
   refreshToken: String
