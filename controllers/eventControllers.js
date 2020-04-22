@@ -47,7 +47,7 @@ const postEventEdit = (req, res, next) => {
   Event.findByIdAndUpdate(id, { title, type, description, date }, { new: true })
     .then(event => {
       if (!req.user.refreshToken) {
-        res.redirect(`/pet${event.owner}`);
+        res.redirect(`/pet/${event.owner}`);
         return;
       }
 
@@ -72,10 +72,10 @@ const postEventEdit = (req, res, next) => {
         }
       );
 
-      res.redirect(`/pet${event.owner}`);
+      res.redirect(`/pet/${event.owner}`);
     })
     .catch(() => {
-      res.redirect(`/pet${event.owner}`);
+      res.redirect(`/pet/${event.owner}`);
     });
 };
 
