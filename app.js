@@ -10,16 +10,11 @@ const hbs = require('hbs');
 const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const flash = require('connect-flash');
-const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('./models/User');
-
-// Google Auth
-const { google } = require('googleapis');
-const { OAuth2 } = google.auth;
-const oAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
 
 // Mongoose connection
 mongoose
@@ -97,21 +92,15 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'https://pet-schedule.herokuapp.com/auth/google/callback',
-      // callbackURL: '/auth/google/callback',
+      // callbackURL: 'https://pet-schedule.herokuapp.com/auth/google/callback',
+      callbackURL: '/auth/google/callback',
       proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
-      // to see the structure of the data in received response:
-      console.log('>>> Detalhes da conta do Google: ', profile);
-      console.log('>>> accessToken: ', accessToken);
-      console.log('>>> refreshToken: ', refreshToken);
-
       const { id, displayName, emails } = profile;
 
       User.findOne({ googleID: id })
         .then(user => {
-          console.log('>>> Estou no then do User.findOne, olha a resposta:', user);
           if (user) {
             done(null, user);
             return;
@@ -119,12 +108,11 @@ passport.use(
 
           User.create({ googleID: id, name: displayName, email: emails[0].value, accessToken, refreshToken })
             .then(newUser => {
-              console.log('>>> Estou no then do User.create, olha a resposta:', newUser);
               done(null, newUser);
             })
-            .catch(err => done(err)); // closes User.create()
+            .catch(err => done(err));
         })
-        .catch(err => done(err)); // closes User.findOne()
+        .catch(err => done(err));
     }
   )
 );
@@ -149,5 +137,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
-
-module.exports = oAuth2Client;

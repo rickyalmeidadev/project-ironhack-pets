@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  if (req.user) {
-    const obj = { user: req.user }
-    res.render('index', { obj });
-    return;
-  }
-  res.render('index', { message: req.flash('error') });
-});
+const indexController = require('../controllers/indexControllers');
 
-router.get('/login', (req, res) => {
-  res.redirect('/')
-})
+router.get('/', indexController.getIndex);
 
-module.exports = router
+// fix passport failure redirection
+router.get('/login', (req, res) => res.redirect('/'));
+
+module.exports = router;

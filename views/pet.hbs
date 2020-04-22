@@ -19,12 +19,12 @@
         </ul>
       </div>
     </div>
+
     {{!-- Events --}}
     <div class="col-md-6 mt-1">
       <button class="btn btn-main btn-block mb-2" data-toggle="modal" data-target="#modalAddEvent">Adicionar
         Evento</button>
       <hr class="my-3">
-      {{!-- <button type="submit" class="btn btn-primary btn-block">Abrir Filtro</button> --}}
       <form action="/pet/filter/{{obj.pet._id}}" method="GET">
         <div class="form justify-content-between align-items-center">
           <div class="mb-1 d-flex justify-content-between">
@@ -34,12 +34,6 @@
                 <option value="all">Todos</option>
               </select>
             </div>
-            {{!-- <div class="my-1 mr-1">
-              <select name="eventOrder" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option value="-1">Mais recente</option>
-                <option value="1">Mais antigo</option>
-              </select>
-            </div> --}}
             <div class="my-1 mr-1 btn-block">
               <select name="eventType" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
                 <option value="all">Todos</option>
@@ -54,7 +48,6 @@
             <div class="my-1 btn-block">
               <button type="submit" class="btn btn-main btn-block">Filtrar</button>
             </div>
-
           </div>
         </div>
       </form>
@@ -62,9 +55,7 @@
         <div class="card mb-1 event-card" style="width: 100%;">
           <div class="card-body">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center icon-div">
-                <i class="far fa-calendar-check display-4"></i>
-              </div>
+              <div class="col-3 d-flex justify-content-center align-items-center icon-div"></div>
               <div class="col-9">
                 <div class="d-flex justify-content-between align-items-between">
                   <h5 class="card-title sub-title-style">{{title}}</h5>
@@ -100,7 +91,6 @@
             <div class="form-group">
               <label for="inputPassword1">Tipo</label>
               <select class="custom-select type-select" name="type" id="type-{{_id}}" required>
-                {{!-- <option value="" disabled selected>Tipo</option> --}}
                 <option value="Vacina">Vacina</option>
                 <option value="Consulta">Consulta</option>
                 <option value="Cirurgia">Cirurgia</option>
@@ -126,15 +116,12 @@
             </div>
             <button type="submit" class="btn btn-main btn-block">Salvar</button>
             <a class="btn btn-delete btn-block" href="/event/delete/{{_id}}">Excluir</a>
-
           </form>
         </div>
       </div>
     </div>
   </div>
-
 {{/each}}
-
 
 {{!-- Modal Edit Pet --}}
 <div class="modal fade" id="modalEditarPet" tabindex="-1" role="dialog" aria-labelledby="modalEditarPetTitle"
@@ -157,7 +144,6 @@
           <div class="form-group">
             <label for="inputPassword1">Tipo</label>
             <select class="custom-select" name="species" id="species" required>
-              {{!-- <option value="" disabled selected>Tipo</option> --}}
               <option value="Cachorro">Cachorro</option>
               <option value="Gato">Gato</option>
               <option value="Ave">Ave</option>
@@ -207,8 +193,7 @@
   </div>
 </div>
 
-{{!-- Modal Event --}}
-
+{{!-- Modal Add Event --}}
 <div class="modal fade" id="modalAddEvent" tabindex="-1" role="dialog" aria-labelledby="modalAddEventTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

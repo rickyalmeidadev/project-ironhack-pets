@@ -1,10 +1,9 @@
 <div class="container pt-5">
-  {{!--  Welcome Section --}}
+  {{!--  Welcoming Section --}}
   <h1 class="my-5 title-style">Olá, {{obj.user.name}}</h1>
   <h3 class="my-3 sub-title-style">Próximos eventos:</h3>
 
   {{!-- Next Events --}}
-
   <div class="row my-5">
     {{#if obj.noEvents}}
       <div class="col-12 p-5">
@@ -16,9 +15,7 @@
         <div class="card event-card" style="width: 100%;">
           <div class="card-body">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center icon-div">
-                <i class="far fa-calendar-check display-4"></i>
-              </div>
+              <div class="col-3 d-flex justify-content-center align-items-center icon-div"></div>
               <div class="col-9">
                 <h5 class="card-title sub-title-style">{{title}}</h5>
                 <h6 class="card-subtitle my-2 text-muted type-h6">Tipo: {{type}}</h6>
@@ -32,6 +29,7 @@
       </div>
     {{/each}}
   </div>
+
   <hr>
 
   {{!-- Pets --}}
@@ -43,7 +41,6 @@
       </div>
     </div>
   </div>
-
   <div class="row my-5">
     {{#if obj.noPets}}
       <div class="col-12 p-5">
@@ -64,14 +61,7 @@
     {{/each}}
   </div>
 
-
-
-
-
-
-
   {{!-- Modal Add Pet --}}
-
   <div class="modal fade" id="modalAdicionarPet" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarPetTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -105,10 +95,6 @@
               <label for="birthdate">Data de Nascimento</label>
               <input type="date" name="birthdate" class="form-control" aria-describedby="birthdate" required>
             </div>
-            {{!-- <div class="form-group">
-              <label for="photo">Foto</label>
-              <input type="file" name="photo">
-            </div> --}}
             <div class="form-group">
               <label for="photo">Foto</label>
               <div class="custom-file">
