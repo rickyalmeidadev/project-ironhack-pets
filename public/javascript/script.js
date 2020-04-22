@@ -69,7 +69,7 @@ const iconDiv = document.querySelectorAll('.icon-div');
 const typeH6 = document.querySelectorAll('.type-h6');
 
 eventCards.forEach((_, i) => {
-  let type = typeH6[i].innerText.replace('Tipo: ', '')
+  let type = typeH6[i].innerText.replace('Tipo: ', '');
 
   switch (type) {
     case 'Vacina':
@@ -105,5 +105,38 @@ eventCards.forEach((_, i) => {
   }
 });
 
+const birthdateAdd = document.getElementById('birthdateAdd');
+const birthdateEdit = document.getElementById('birthdateEdit');
+const eventDateAdd = document.getElementById('eventDateAdd');
+const eventDateEdit = document.querySelectorAll('.eventDateEdit');
 
+const dateFormater = () => {
+  const date = new Date();
 
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let year = date.getFullYear();
+
+  if (month < 10) month = `0${month}`;
+  if (day < 10) day = `0${day}`;
+
+  return `${year}-${month}-${day}`;
+};
+
+if (birthdateAdd) {
+  birthdateAdd.max = dateFormater();
+  birthdateAdd.value = dateFormater();
+}
+
+if (birthdateEdit) {
+  birthdateEdit.max = dateFormater();
+}
+
+if (eventDateAdd) {
+  eventDateAdd.min = dateFormater();
+  eventDateAdd.value = dateFormater();
+}
+
+if (eventDateEdit.length > 0) {
+  eventDateEdit.forEach(input => (input.min = dateFormater()));
+}
