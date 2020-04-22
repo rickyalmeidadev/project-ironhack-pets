@@ -136,7 +136,3 @@ if (eventDateAdd) {
   eventDateAdd.min = dateFormater();
   eventDateAdd.value = dateFormater();
 }
-
-if (eventDateEdit.length > 0) {
-  eventDateEdit.forEach(input => (input.min = dateFormater()));
-}
