@@ -125,7 +125,6 @@ const dateFormater = () => {
 
 if (birthdateAdd) {
   birthdateAdd.max = dateFormater();
-  birthdateAdd.value = dateFormater();
 }
 
 if (birthdateEdit) {
@@ -134,5 +133,4 @@ if (birthdateEdit) {
 
 if (eventDateAdd) {
   eventDateAdd.min = dateFormater();
-  eventDateAdd.value = dateFormater();
 }
