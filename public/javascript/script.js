@@ -104,33 +104,3 @@ eventCards.forEach((_, i) => {
       break;
   }
 });
-
-const birthdateAdd = document.getElementById('birthdateAdd');
-const birthdateEdit = document.getElementById('birthdateEdit');
-const eventDateAdd = document.getElementById('eventDateAdd');
-const eventDateEdit = document.querySelectorAll('.eventDateEdit');
-
-const dateFormater = () => {
-  const date = new Date();
-
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let year = date.getFullYear();
-
-  if (month < 10) month = `0${month}`;
-  if (day < 10) day = `0${day}`;
-
-  return `${year}-${month}-${day}`;
-};
-
-if (birthdateAdd) {
-  birthdateAdd.max = dateFormater();
-}
-
-if (birthdateEdit) {
-  birthdateEdit.max = dateFormater();
-}
-
-if (eventDateAdd) {
-  eventDateAdd.min = dateFormater();
-}
