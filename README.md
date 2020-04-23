@@ -1,7 +1,7 @@
 # PetSchedule
 > Organizador de tarefas dos seus pets
 
-<img src="screenshots/">
+<img src="screenshots/screenshot1.png">
 
 Com o crescimento de PetsShops e o mercado serviços para pets, temos hoje a nossa disposição inúmeras atividades de nossos bichinos para conciliar. Somado com a correria do dia a dia, é fácil deixar de dar a atenço devida aos nossos pets amados.
 
@@ -10,12 +10,16 @@ Tendo em vista esse problema, a plataforma PetSchedule proporciona ao usuário d
 ## Screenshots
 
 <div>
-  <img width="400px" src="screenshots/...">
-  <img width="400px" src="screenshots/...">
+  <img width="400px" src="screenshots/screenshot7.png">
+  <img width="400px" src="screenshots/screenshot2.png">
 </div>
 <div>
-  <img width="400px" src="screenshots/...">
-  <img width="400px" src="screenshots/...">
+  <img width="400px" src="screenshots/screenshot4.png">
+  <img width="400px" src="screenshots/screenshot3.png">
+</div>
+<div>
+  <img width="400px" src="screenshots/screenshot6.png">
+  <img width="400px" src="screenshots/screenshot5.png">
 </div>
 
 ## Configuração para Desenvolvimento
